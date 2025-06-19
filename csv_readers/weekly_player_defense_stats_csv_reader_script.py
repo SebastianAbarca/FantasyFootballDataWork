@@ -19,7 +19,7 @@ pd.set_option('display.max_colwidth', None)    # Don't truncate column content
 pd.set_option('display.width', 1000)           # Set wide enough console width
 
 
-base_path = "."
+base_path = ".."
 
 print(f"\n{'=' * 60}")
 print(f"📂 File: {file_names[0]}")
