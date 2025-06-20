@@ -1,6 +1,10 @@
-type Query
+type Query {
+  _empty: String
+}
 
-type Mutation
+type Mutation {
+  _empty: String
+}
 #--------- DIM PLAYER ---------------
 type DimPlayer {
   player_id: String!
