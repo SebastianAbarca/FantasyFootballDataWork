@@ -1,15 +1,18 @@
-from backend import db
+from sqlalchemy import Column, String, Integer, Float
+from backend.db import Base
 
-class DimPlayers(db.Model):
-    __tablename__ = 'DimPlayers'
-    player_id = db.Column(db.String(50), primary_key=True)
-    player_name = db.Column(db.String(255))
-    position = db.Column(db.String(10))
-    birth_year = db.Column(db.Integer)
-    draft_year = db.Column(db.Integer)
-    draft_round = db.Column(db.Integer)
-    draft_pick = db.Column(db.Integer)
-    draft_ovr = db.Column(db.Integer)
-    height = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
-    college = db.Column(db.String(255))
+class DimPlayers(Base):
+    __tablename__ = "DimPlayers"
+
+    player_id = Column(String(50), primary_key=True)
+    player_name = Column(String(255), nullable=False)
+    position = Column(String(10))
+    birth_year = Column(Integer)
+    draft_year = Column(Integer)
+    draft_round = Column(Integer)
+    draft_pick = Column(Integer)
+    draft_ovr = Column(Integer)
+    height = Column(Float)
+    weight = Column(Float)
+    college = Column(String(255))
+    offense_defense_flag = Column(String(5))
