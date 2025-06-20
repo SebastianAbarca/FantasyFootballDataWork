@@ -1,0 +1,119 @@
+# your_project/backend/graphql/schema.graphql
+
+# --- Root Query Type ---
+# This defines all the top-level queries your API supports.
+type Query {
+  # --- DimPlayers Queries ---
+  allPlayers: [DimPlayer!]!
+  player(playerId: String!): DimPlayer
+
+  # --- DimTeams Queries ---
+  allTeams: [DimTeam!]!
+  team(teamId: String!): DimTeam
+
+  # --- PlayerYearlyStats Queries ---
+  allPlayerYearlyStats: [PlayerYearlyStats!]!
+  playerYearlyStat(playerId: String!, season: Int!, seasonType: String!): PlayerYearlyStats
+
+  # --- PlayerWeeklyStats Queries ---
+  allPlayerWeeklyStats: [PlayerWeeklyStats!]!
+  playerWeeklyStat(playerId: String!, season: Int!, seasonType: String!, week: Int!): PlayerWeeklyStats
+
+  # --- TeamWeeklyStats Queries ---
+  allTeamWeeklyStats: [TeamWeeklyStats!]!
+  teamWeeklyStat(gameId: String!, teamId: String!): TeamWeeklyStats
+
+  # --- TeamYearlyStats Queries ---
+  allTeamYearlyStats: [TeamYearlyStats!]!
+  teamYearlyStat(teamId: String!, season: Int!, seasonType: String!): TeamYearlyStats
+}
+
+# --- Root Mutation Type ---
+# This defines all the top-level mutations (create, update, delete operations).
+type Mutation {
+  # --- DimPlayers Mutations ---
+  createPlayer(input: DimPlayerInput!): DimPlayer
+  updatePlayer(playerId: String!, input: DimPlayerInput): DimPlayer
+  deletePlayer(playerId: String!): Boolean
+
+  # --- DimTeams Mutations ---
+  createTeam(input: DimTeamInput!): DimTeam
+  updateTeam(teamId: String!, input: DimTeamInput): DimTeam
+  deleteTeam(teamId: String!): Boolean
+
+  # --- PlayerYearlyStats Mutations ---
+  createPlayerYearlyStats(
+    playerId: String!
+    season: Int!
+    seasonType: String!
+    input: PlayerYearlyStatsInput!
+  ): PlayerYearlyStats
+  updatePlayerYearlyStats(
+    playerId: String!
+    season: Int!
+    seasonType: String!
+    input: PlayerYearlyStatsInput!
+  ): PlayerYearlyStats
+  deletePlayerYearlyStats(
+    playerId: String!
+    season: Int!
+    seasonType: String!
+  ): Boolean
+
+  # --- PlayerWeeklyStats Mutations ---
+  createPlayerWeeklyStats(
+    playerId: String!
+    season: Int!
+    seasonType: String!
+    week: Int!
+    input: PlayerWeeklyStatsInput!
+  ): PlayerWeeklyStats
+  updatePlayerWeeklyStats(
+    playerId: String!
+    season: Int!
+    seasonType: String!
+    week: Int!
+    input: PlayerWeeklyStatsInput!
+  ): PlayerWeeklyStats
+  deletePlayerWeeklyStats(
+    playerId: String!
+    season: Int!
+    seasonType: String!
+    week: Int!
+  ): Boolean
+
+  # --- TeamWeeklyStats Mutations ---
+  createTeamWeeklyStats(
+    gameId: String!
+    teamId: String!
+    input: TeamWeeklyStatsInput!
+  ): TeamWeeklyStats
+  updateTeamWeeklyStats(
+    gameId: String!
+    teamId: String!
+    input: TeamWeeklyStatsInput!
+  ): TeamWeeklyStats
+  deleteTeamWeeklyStats(
+    gameId: String!
+    teamId: String!
+  ): Boolean
+
+  # --- TeamYearlyStats Mutations ---
+  createTeamYearlyStats(
+    teamId: String!
+    season: Int!
+    seasonType: String!
+    input: TeamYearlyStatsInput!
+  ): TeamYearlyStats
+  updateTeamYearlyStats(
+    teamId: String!
+    season: Int!
+    seasonType: String!
+    input: TeamYearlyStatsInput!
+  ): TeamYearlyStats
+  deleteTeamYearlyStats(
+    teamId: String!
+    season: Int!
+    seasonType: String!
+  ): Boolean
+}
