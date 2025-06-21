@@ -1,14 +1,25 @@
 from ariadne import make_executable_schema, load_schema_from_path
-from ariadne.asgi import GraphQL
-
-from backend.graphql.resolvers.player_resolvers import player_query, player_mutation
-from backend.graphql.resolvers.team_resolvers import team_query, team_mutation
-from backend.graphql.resolvers.player_weekly_stats_resolvers import query as pws_query, mutation as pws_mutation
-
-type_defs = load_schema_from_path("backend/graphql/schema.graphql")
+from backend.graphql.resolvers import (
+    player_resolvers,
+    team_resolvers,
+    player_weekly_stats_resolvers,
+    player_yearly_stats_resolvers,
+    team_weekly_stats_resolvers,
+    team_yearly_stats_resolvers
+)
 
 schema = make_executable_schema(
-    type_defs,
-    [player_query, player_mutation, team_query, team_mutation, pws_query, pws_mutation]
+    load_schema_from_path("backend/graphql/schema.graphql"),
+    player_resolvers.query,
+    player_resolvers.mutation,
+    team_resolvers.query,
+    team_resolvers.mutation,
+    player_weekly_stats_resolvers.query,
+    player_weekly_stats_resolvers.mutation,
+    player_yearly_stats_resolvers.query,
+    player_yearly_stats_resolvers.mutation,
+    team_weekly_stats_resolvers.query,
+    team_weekly_stats_resolvers.mutation,
+    team_yearly_stats_resolvers.query,
+    team_yearly_stats_resolvers.mutation
 )
-graphql_app = GraphQL(schema, debug=True)

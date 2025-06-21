@@ -18,21 +18,21 @@ pd.set_option('display.max_colwidth', None)    # Don't truncate column content
 pd.set_option('display.width', 1000)           # Set wide enough console width
 
 
-base_path = ".."
+base_path = "../.."
 
 
 
 flag = True
-file_path = os.path.join(base_path, file_names[7])
+file_path = os.path.join(base_path, file_names[5])
 print(f"\n{'=' * 60}")
-print(f"📂 File: {file_names[7]}")
+print(f"📂 File: {file_names[5]}")
 print(f"{'=' * 60}")
 try:
     df = pd.read_csv(file_path)
     if(flag):
-        specific_columns = {'record'}
+        specific_columns = {''}
         all_column_names = df.columns.tolist()
-        columns_to_drop_by_index = [col_name for idx, col_name in enumerate(all_column_names) if idx >= 43 and idx <= 72]
+        columns_to_drop_by_index = [col_name for idx, col_name in enumerate(all_column_names) if idx >= 55]
         all_columns_to_drop = list(set(columns_to_drop_by_index) | specific_columns)
         existing_columns_to_drop = [col for col in all_columns_to_drop if col in df.columns]
         if existing_columns_to_drop:
@@ -43,13 +43,12 @@ try:
 
         print(f"New DataFrame shape: {df.shape}")
         print(f"New DataFrame columns: {df.columns.tolist()}")
-        output_csv_name = 'my_team_yearly_stats_offense.csv'
+        output_csv_name = 'my_player_yearly_stats_offense.csv'
         df.to_csv(output_csv_name, index=False)  # index=False is crucial to avoid writing the DataFrame index
         print(f"Modified DataFrame saved to '{output_csv_name}' successfully.")
     else:
         print(df.shape)
-        print(df.columns[43])
-        print(df.columns[72])
+        print(df.columns[55])
 
 except Exception as e:
-    print(f"⚠️ Error reading {file_names[7]}: {e}")
+    print(f"⚠️ Error reading {file_names[5]}: {e}")
